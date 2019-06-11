@@ -4,7 +4,7 @@ from lib_fat2019 import *
 BASE = 'base_16_specgram'
 
 conf.DATA = Path('/mnt/dataset/freesound-audio-tagging-2019')
-conf.PREPROCESSED = Path('/mnt/dataset/fat2019_private2')
+conf.ROOT = Path('/mnt/dataset/fat2019_files')
 conf.WORK = Path('/mnt/dataset/work/fat2019')
 conf.MODEL = 'specgram'
 conf.PRETRAINED_MODEL = ''
@@ -30,7 +30,7 @@ print(conf.NAME)
 learn.callback_fns[1].keywords['pseudo_labeling'] = False
 learn.callback_fns[1].keywords['mixmatch_alpha'] = 0.
 
-if False:
+if True:
     learn.unfreeze()
 
     print('stage 1')
@@ -44,12 +44,10 @@ if False:
     visualize_first_layer(learn, conf.WORK/f'{BASE}.png')
     learn.save(conf.WORK/f'{BASE}_last')
 
-else:
-    #load_fastai_learner_model(learn, f'{conf.WORK/BASE}_best')
-    print(f'Writing {conf.WORK/BASE}_best.csv ...')
-    df = evaluate_weight(conf, f'{conf.WORK/BASE}_best', for_what='pretrain',
-                         name_as='app_M4_1s_sp0_P16_sz160zZ_bs128_APD_tNa_NF_A2_lx_m0.75-0.0')
-    df.to_csv(f'{conf.WORK/BASE}_best.csv')
-    print(df[:10])
+print(f'Writing {conf.WORK/BASE}_best.csv ...')
+df = evaluate_weight(conf, f'{conf.WORK/BASE}_best', for_what='pretrain',
+                     name_as='app_M4_1s_sp0_P16_sz160zZ_bs128_APD_tNa_NF_A2_lx_m0.75-0.0')
+df.to_csv(f'{conf.WORK/BASE}_best.csv')
+print(df[:10])
     
     

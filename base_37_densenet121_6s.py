@@ -4,7 +4,7 @@ from lib_fat2019 import *
 BASE = 'base_37_densenet121_6s_l1'
 
 conf.DATA = Path('/mnt/dataset/freesound-audio-tagging-2019')
-conf.PREPROCESSED = Path('/mnt/dataset/fat2019_private2')
+conf.ROOT = Path('/mnt/dataset/fat2019_files')
 conf.WORK = Path('/mnt/dataset/work/fat2019')
 conf.MODEL = 'densenet121'
 conf.PRETRAINED_MODEL = ''
