@@ -95,14 +95,19 @@ This is available for AAA format only, painting stationary part of sound with ze
 
 ### 1-3. Data domain transfer - noisy set only
 
-This is an attempt to mitigate data domain difference between noisy and curated set, based on __frequency envelope__.
+This is an attempt to mitigate data domain difference between noisy and curated set, based on __average power spectrum__ which is calculated by averaging spectrogram over time.
 
-- [Visual Frequency Envelope Conversion Gallery available as notebook](Visual_Frequency_Envelope_Conversion_Gallery.ipynb)
-- This converts frequency envelope of sample from noisy to curated regime.
+- [Visual Average Spectrum Conversion Gallery available as notebook](Visual_Average_Spectrum_Conversion_Gallery.ipynb)
+- This converts average spectrum of each sample from noisy to curated regime.
 
     ![domain_freq_map_example](images/domain_freq_map_example.png)
 
-    _`src`_ is noisy set envelope, _`dest`_ is curated's, and _`mapped`_ is envelope mapped from noisy to curated according to the design above. As you can see _src_ envelope is mapped to _dest_ which is almost overlapped by _mapped_ envelope.
+    _`src`_ is noisy set spectrum mean, _`dest`_ is curated's, and _`mapped`_ is average spectrum mapped from noisy to curated according to the design above. As you can see _src_  average spectrum is mapped to _dest_ which is almost overlapped by _mapped_ average spectrum.
+
+#### Update on June-13
+
+- Changed to call basic idea from 'frequency envelope' to 'average power spectrum' for better description. Initial idea comes from adapting frequency envelope, but what was done is actually adapting average of spectrum.
+- But doubt of bug found in this technique by visualizing converted spectrograms. See the bottom part of the [Visual Average Spectrum Conversion Gallery](Visual_Average_Spectrum_Conversion_Gallery.ipynb).
 
 ## 2. Dataset preprocessing
 
